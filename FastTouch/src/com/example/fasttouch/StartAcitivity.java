@@ -14,16 +14,16 @@ public class StartAcitivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE); 
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.activity_start);		
+		setContentView(R.layout.activity_start);	
+
 	}
 	
 	public void startGame(View view) {
 		Intent intent = new Intent(StartAcitivity.this, MainActivity.class);
 		startActivity(intent);
 	}
-	
+
 	public void onBackPressed(){
-		
 		Intent intent = new Intent(Intent.ACTION_MAIN);
 		intent.addCategory(Intent.CATEGORY_HOME);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
