@@ -160,4 +160,12 @@ public class MainActivity extends Activity {
 			textViewTimer.setText(String.format("%2d", seconds) + "s");
 		}
 	}
+	
+	@Override
+	public void onBackPressed() {
+		timer.cancel();
+		
+		Intent intent = new Intent(MainActivity.this, StartAcitivity.class);
+		startActivity(intent);
+	}
 }
