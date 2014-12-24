@@ -17,6 +17,7 @@ public class GameOverActivity extends Activity {
 	private TextView textViewFinalScoreValue;
 	private TextView textViewHighScoreValue;
 	private String finalScore;
+	public MediaPlayer mp_gameover;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +25,8 @@ public class GameOverActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE); 
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_gameover);
-		
-		final MediaPlayer mp_gameover = MediaPlayer.create(getApplicationContext(),R.raw.gameover);
+
+		mp_gameover = MediaPlayer.create(getApplicationContext(),R.raw.gameover);
 		mp_gameover.start();
 		
 		Intent intent = getIntent();
@@ -53,6 +54,7 @@ public class GameOverActivity extends Activity {
 	
 	@Override
 	public void onBackPressed() {
+		mp_gameover.stop();
 		Intent intent = new Intent(GameOverActivity.this, StartAcitivity.class);
 		startActivity(intent);
 	}
