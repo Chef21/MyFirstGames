@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="120dp"
         android:layout_marginTop="200dp"
-        android:src="@drawable/play_color" 
+        android:src="@drawable/play" 
         android:contentDescription="@string/game_start_description"
         android:onClick="startGame" 
         android:background="@android:color/transparent"/>
