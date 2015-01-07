@@ -478,6 +478,7 @@ int drawable background_game 0x7f020033
 int drawable background_start 0x7f020034
 int drawable game_face 0x7f020035
 int drawable ic_launcher 0x7f020036
+int drawable play 0x7f020037
 int id action_bar 0x7f060031
 int id action_bar_activity_content 0x7f060018
 int id action_bar_container 0x7f060030
@@ -496,7 +497,6 @@ int id activity_chooser_view_content 0x7f060021
 int id always 0x7f06000d
 int id beginning 0x7f060012
 int id buttonRestart 0x7f060042
-int id buttonStart 0x7f060049
 int id checkbox 0x7f060029
 int id collapseActionView 0x7f06000f
 int id decor_content_parent 0x7f06002f
@@ -513,6 +513,7 @@ int id homeAsUp 0x7f060007
 int id icon 0x7f060026
 int id ifRoom 0x7f06000c
 int id image 0x7f060023
+int id imageButtonStartGame 0x7f060049
 int id listMode 0x7f060002
 int id list_item 0x7f060025
 int id middle 0x7f060013
@@ -605,6 +606,8 @@ int string app_name 0x7f0b0010
 int string final_score 0x7f0b0015
 int string game_face_description 0x7f0b0013
 int string game_over 0x7f0b0014
+int string game_sound_description 0x7f0b001a
+int string game_start_description 0x7f0b0019
 int string hello_world 0x7f0b0011
 int string higscore 0x7f0b0017
 int string restart 0x7f0b0016
