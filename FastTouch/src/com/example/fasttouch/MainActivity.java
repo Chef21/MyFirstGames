@@ -7,10 +7,13 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Point;
+import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,6 +30,10 @@ public class MainActivity extends Activity {
 	private TextView textViewLevel;
 	private TextView textViewScore;
 	private TextView textViewTimer;
+
+	private ImageView imageViewBirdOne;
+	private ImageView imageViewBirdTwo;
+	private ImageView imageViewBirdThree;
 	
 	private int level;
 	private int score;
@@ -37,6 +44,7 @@ public class MainActivity extends Activity {
 	
 	RelativeLayout relativeLayout;
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,6 +54,8 @@ public class MainActivity extends Activity {
 		
 		level = 1;
 		textViewLevel = (TextView) findViewById(R.id.textViewLevel);
+		SpannableString content = new SpannableString("Level: " + level);
+		content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
 		textViewLevel.setText("Level: " + level);
 		
 		score = 0;
@@ -57,6 +67,31 @@ public class MainActivity extends Activity {
 		animationFadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 		
 		relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayoutGame);
+		
+	    AnimationDrawable animationOne = new AnimationDrawable();
+	    animationOne.addFrame(getResources().getDrawable(R.drawable.bird_up), 500);
+	    animationOne.addFrame(getResources().getDrawable(R.drawable.bird_down), 500);
+	    animationOne.setOneShot(false);
+	    imageViewBirdOne = (ImageView) findViewById(R.id.imageViewGameBirdOne);
+	    imageViewBirdOne.setBackgroundDrawable(animationOne);
+	    
+	    AnimationDrawable animationTwo = new AnimationDrawable();
+	    animationTwo.addFrame(getResources().getDrawable(R.drawable.bird_down), 500);
+	    animationTwo.addFrame(getResources().getDrawable(R.drawable.bird_up), 500);
+	    animationTwo.setOneShot(false);
+		imageViewBirdTwo = (ImageView) findViewById(R.id.imageViewGameBirdTwo);
+		imageViewBirdTwo.setBackgroundDrawable(animationTwo);
+		
+	    AnimationDrawable animationThree = new AnimationDrawable();
+	    animationThree.addFrame(getResources().getDrawable(R.drawable.bird_down), 500);
+	    animationThree.addFrame(getResources().getDrawable(R.drawable.bird_up), 500);
+	    animationThree.setOneShot(false);
+	    imageViewBirdThree = (ImageView) findViewById(R.id.imageViewGameBirdThree);
+	    imageViewBirdThree.setBackgroundDrawable(animationThree);
+		
+		animationOne.start();
+		animationTwo.start();
+		animationThree.start();
 		
 		startGame();
 	}
@@ -77,7 +112,7 @@ public class MainActivity extends Activity {
 	 * Start the timer
 	 */
 	private void startTimer() {
-		timer = new CounterClass(5000, 1000);
+		timer = new CounterClass(6000, 1000);
 		timer.start();
 	}
 	
@@ -99,7 +134,7 @@ public class MainActivity extends Activity {
 					relativeLayout.removeViewInLayout(imageView);
 					score++;
 					textViewScore.setText(score + "");
-					if (relativeLayout.getChildCount() == 3) {				
+					if (relativeLayout.getChildCount() == 6) {				
 						level++;
 						textViewLevel.setText("Level: " + level);
 						
@@ -112,8 +147,8 @@ public class MainActivity extends Activity {
 			Display display = getWindowManager().getDefaultDisplay();
 			Point size = new Point();
 			display.getSize(size);
-			float x = random.nextInt(750);
-			float y = random.nextInt(1200);
+			float x = random.nextInt(720);
+			float y = random.nextInt(1280);
 			
 			RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 			imageView.setLayoutParams(layoutParams);
@@ -124,7 +159,10 @@ public class MainActivity extends Activity {
 			lp.topMargin = 300;
 			
 			relativeLayout.addView(imageView);
-			relativeLayout.startAnimation(animationFadeIn);
+			
+			if (level > 1) {
+				relativeLayout.startAnimation(animationFadeIn);
+			}
 		}
 	}
 
@@ -144,7 +182,6 @@ public class MainActivity extends Activity {
 
 		@Override
 		public void onFinish() {
-			textViewTimer.setText("0s");
 			Intent intent = new Intent(MainActivity.this, GameOverActivity.class);
 			intent.putExtra("score", score + "");			
 			startActivity(intent);
@@ -157,7 +194,11 @@ public class MainActivity extends Activity {
 			// Timer in Seconds
 			long millis = millisUntilFinished;
 			int seconds = (int) (millis / 1000);
-			textViewTimer.setText(String.format("%2d", seconds) + "s");
+			if (seconds == 1) {
+				
+			}
+			
+			textViewTimer.setText((millisUntilFinished / 1000) + "s");
 		}
 	}
 	

@@ -12,4 +12,6 @@
     <string name="start">Start</string>
     <string name="game_start_description">Start Game Button</string>
     <string name="game_sound_description">Sound Game Button</string>
+    <string name="game_repeat_description">Repeat Game Button</string>
+    <string name="bird_description">Bird</string>
 </resources>
