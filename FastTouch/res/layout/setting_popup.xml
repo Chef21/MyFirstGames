@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_element"
+    android:layout_width="240dp"
+    android:layout_height="285dp"
+    android:background="@color/BlueViolet">
+
+    <ImageView
+        android:id="@+id/imageViewClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/close_icon"
+        android:contentDescription="@string/close_description"
+        android:onClick="closeSettings"/>
+
+    <TextView
+        android:id="@+id/textViewSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageViewClose"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="24dp"
+        android:text="@string/settings_description"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textViewSound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewSettings"
+        android:layout_below="@+id/textViewSettings"
+        android:layout_marginTop="42dp"
+        android:text="@string/sound"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Switch
+        android:id="@+id/switchSoundOnOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewSound"
+        android:layout_alignBottom="@+id/textViewSound"
+        android:layout_toLeftOf="@+id/imageViewClose"
+        android:textOn="@string/on"
+        android:textOff="@string/off"
+        android:checked="true" />
+    
+</RelativeLayout>

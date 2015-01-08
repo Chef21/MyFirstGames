@@ -22,22 +22,17 @@
         android:onClick="startGame"
         android:src="@drawable/play" />
 
-    <ImageView
-        android:id="@+id/imageViewBirdOne"
+    <ImageButton
+        android:id="@+id/imageButtonSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/imageButtonStartGame"
-        android:layout_marginLeft="28dp"
-        android:contentDescription="@string/bird_description"/>
-
-    <ImageView
-        android:id="@+id/imageViewBirdTwo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/imageButtonStartGame"
-        android:layout_marginRight="26dp"
-        android:contentDescription="@string/bird_description" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="204dp"
+        android:layout_marginRight="60dp"
+        android:layout_toLeftOf="@+id/imageButtonStartGame"
+        android:background="@null"
+        android:contentDescription="@string/settings_description"
+        android:src="@drawable/icon_settings"
+        android:onClick="showSettings" />
 
 </RelativeLayout>

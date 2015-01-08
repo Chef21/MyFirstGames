@@ -5,8 +5,9 @@ import java.util.Random;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -49,21 +50,6 @@ public class MainActivity extends Activity {
 	 * The TextView Timer
 	 */
 	private TextView textViewTimer;
-
-	/**
-	 * The ImageView BirdOne
-	 */
-	private ImageView imageViewBirdOne;
-	
-	/**
-	 * The ImageView BirdTwo
-	 */
-	private ImageView imageViewBirdTwo;
-	
-	/**
-	 * The ImageView BirdThree
-	 */
-	private ImageView imageViewBirdThree;
 	
 	/**
 	 * The level
@@ -90,7 +76,6 @@ public class MainActivity extends Activity {
 	 */
 	RelativeLayout relativeLayout;
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -118,31 +103,6 @@ public class MainActivity extends Activity {
 		// Animations
 		animationFadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 		relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayoutGame);
-		
-	    AnimationDrawable animationOne = new AnimationDrawable();
-	    animationOne.addFrame(getResources().getDrawable(R.drawable.bird_up), 500);
-	    animationOne.addFrame(getResources().getDrawable(R.drawable.bird_down), 500);
-	    animationOne.setOneShot(false);
-	    imageViewBirdOne = (ImageView) findViewById(R.id.imageViewGameBirdOne);
-	    imageViewBirdOne.setBackgroundDrawable(animationOne);
-	    
-	    AnimationDrawable animationTwo = new AnimationDrawable();
-	    animationTwo.addFrame(getResources().getDrawable(R.drawable.bird_down), 500);
-	    animationTwo.addFrame(getResources().getDrawable(R.drawable.bird_up), 500);
-	    animationTwo.setOneShot(false);
-		imageViewBirdTwo = (ImageView) findViewById(R.id.imageViewGameBirdTwo);
-		imageViewBirdTwo.setBackgroundDrawable(animationTwo);
-		
-	    AnimationDrawable animationThree = new AnimationDrawable();
-	    animationThree.addFrame(getResources().getDrawable(R.drawable.bird_down), 500);
-	    animationThree.addFrame(getResources().getDrawable(R.drawable.bird_up), 500);
-	    animationThree.setOneShot(false);
-	    imageViewBirdThree = (ImageView) findViewById(R.id.imageViewGameBirdThree);
-	    imageViewBirdThree.setBackgroundDrawable(animationThree);
-		
-		animationOne.start();
-		animationTwo.start();
-		animationThree.start();
 		
 		// start game
 		startGame();
@@ -196,7 +156,7 @@ public class MainActivity extends Activity {
 					textViewScore.setText(score + "");
 					
 					// check if all images are clicked
-					if (relativeLayout.getChildCount() == 6) {				
+					if (relativeLayout.getChildCount() == 3) {				
 						level++;
 						textViewLevel.setText("Level: " + level);
 						
@@ -228,6 +188,7 @@ public class MainActivity extends Activity {
 			}
 		}
 	}
+	
 
 
 	/**
@@ -253,14 +214,7 @@ public class MainActivity extends Activity {
 		@SuppressLint({ "NewApi", "DefaultLocale", "ResourceAsColor" })
 		@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 		@Override
-		public void onTick(long millisUntilFinished) {
-			// Timer in Seconds
-			long millis = millisUntilFinished;
-			int seconds = (int) (millis / 1000);
-			if (seconds == 1) {
-				
-			}
-			
+		public void onTick(long millisUntilFinished) {	
 			textViewTimer.setText((millisUntilFinished / 1000) + "s");
 		}
 	}

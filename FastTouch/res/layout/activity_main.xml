@@ -43,30 +43,4 @@
         android:textColor="@color/OrangeRed"
         android:textSize="15sp"
         android:textStyle="bold" />
-
-	<ImageView
-	    android:id="@+id/imageViewGameBirdOne"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_marginTop="80dp"
-	     android:contentDescription="@string/bird_description"/>
-
-	<ImageView
-	    android:id="@+id/imageViewGameBirdThree"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignRight="@+id/textViewTimer"
-	    android:layout_below="@+id/textViewTimer"
-	    android:layout_marginTop="40dp"
-	    android:contentDescription="@string/bird_description" />
-
-	<ImageView
-	    android:id="@+id/imageViewGameBirdTwo"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignTop="@+id/imageViewGameBirdThree"
-	    android:layout_centerHorizontal="true"
-	    android:layout_marginTop="60dp"
-	    android:contentDescription="@string/bird_description" />
-
 </RelativeLayout>
