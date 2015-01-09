@@ -3,7 +3,7 @@
     android:id="@+id/popup_element"
     android:layout_width="240dp"
     android:layout_height="285dp"
-    android:background="@color/BlueViolet">
+    android:background="@drawable/settings">
 
     <ImageView
         android:id="@+id/imageViewClose"

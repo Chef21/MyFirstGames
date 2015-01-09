@@ -1,11 +1,10 @@
 package com.example.fasttouch;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,7 +16,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
-import android.widget.Switch;
 
 /**
  * This class custom the Activity on the main screens.
@@ -53,6 +51,7 @@ public class StartAcitivity extends Activity {
 	/**
 	 * Show Settings
 	 */
+	@SuppressLint({ "InflateParams", "ClickableViewAccessibility" })
 	@SuppressWarnings("deprecation")
 	public void showSettings(View view) {
 		//We need to get the instance of the LayoutInflater, use the context of this activity
