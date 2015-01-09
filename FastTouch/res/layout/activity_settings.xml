@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_element"
+    android:layout_width="240dp"
+    android:layout_height="285dp"
+    android:background="@drawable/settings_design">
+
+    <ToggleButton
+        android:id="@+id/toggleButtonSoundOnOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:layout_marginLeft="70dp"
+		android:background="@drawable/audio"
+        android:checked="true" />
+
+    
+</RelativeLayout>

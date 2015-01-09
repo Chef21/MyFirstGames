@@ -10,11 +10,9 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 
 /**
@@ -58,7 +56,7 @@ public class StartAcitivity extends Activity {
 		LayoutInflater inflater = (LayoutInflater) StartAcitivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 		//Inflate the view from a predefined XML layout (no need for root id, using entire layout)
-		View layout = inflater.inflate(R.layout.setting_popup, null);
+		View layout = inflater.inflate(R.layout.activity_settings, null);
 		
 		//Get the devices screen density to calculate correct pixel sizes
 	    float density=StartAcitivity.this.getResources().getDisplayMetrics().density;
@@ -66,12 +64,12 @@ public class StartAcitivity extends Activity {
 	    // create a focusable PopupWindow with the given layout and correct size
 	    final PopupWindow pw = new PopupWindow(layout, (int)density*240, (int)density*285, true);
 	    
-	    //Button to close the pop-up  
-	    ((ImageView) layout.findViewById(R.id.imageViewClose)).setOnClickListener(new OnClickListener() {
-	    	public void onClick(View v) {
-	    		pw.dismiss();
-	        }
-	    });
+//	    //Button to close the pop-up  
+//	    ((ImageView) layout.findViewById(R.id.imageViewClose)).setOnClickListener(new OnClickListener() {
+//	    	public void onClick(View v) {
+//	    		pw.dismiss();
+//	        }
+//	    });
 	    
 	    //Set up touch closing outside of pop-up
 	    pw.setBackgroundDrawable(new BitmapDrawable());
