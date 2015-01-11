@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -24,12 +23,7 @@ import android.widget.TextView;
  *
  */
 public class GameOverActivity extends Activity {
-	
-	/**
-	 * The TextView GameOver
-	 */
-	private TextView textViewGameOver;
-	
+
 	/**
 	 * The TexView ScoreValue
 	 */
@@ -59,12 +53,6 @@ public class GameOverActivity extends Activity {
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_gameover);
 		
-		// game over textview
-		textViewGameOver = (TextView) findViewById(R.id.textViewGameOver);
-		String fontPath = "fonts/Jumping Running.ttf";
-		Typeface typeface = Typeface.createFromAsset(getAssets(), fontPath);
-		textViewGameOver.setTypeface(typeface);
-
 		// start gameover Melodie
 		mp_gameover = MediaPlayer.create(getApplicationContext(),R.raw.gameover);
 		mp_gameover.start();
@@ -72,7 +60,7 @@ public class GameOverActivity extends Activity {
 		// get score		
 		Intent intent = getIntent();
 		finalScore = intent.getStringExtra("score");
-		textViewFinalScoreValue = (TextView) findViewById(R.id.textViewFinalScoreValue);
+		textViewFinalScoreValue = (TextView) findViewById(R.id.textViewScore);
 		textViewFinalScoreValue.setText(finalScore);
 		
 		// get highscore
@@ -84,7 +72,7 @@ public class GameOverActivity extends Activity {
 			editor.commit();			
 		}
 		
-		textViewHighScoreValue = (TextView) findViewById(R.id.textViewHighScoreValue);
+		textViewHighScoreValue = (TextView) findViewById(R.id.textViewHighScore);
 		textViewHighScoreValue.setText(sharedPreferences.getInt("score", 0) + "");
 	}
 	
