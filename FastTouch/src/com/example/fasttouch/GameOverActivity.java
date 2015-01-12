@@ -56,6 +56,7 @@ public class GameOverActivity extends Activity {
 		// start gameover Melodie
 		mp_gameover = MediaPlayer.create(getApplicationContext(),R.raw.gameover);
 		mp_gameover.start();
+
 		
 		// get score		
 		Intent intent = getIntent();
@@ -64,16 +65,16 @@ public class GameOverActivity extends Activity {
 		textViewFinalScoreValue.setText(finalScore);
 		
 		// get highscore
-		SharedPreferences sharedPreferences = this.getSharedPreferences("highScore", Context.MODE_PRIVATE);
-		int oldScore = sharedPreferences.getInt("score", 0);
+		SharedPreferences sharedPreferencesHighScore = this.getSharedPreferences("highScore", Context.MODE_PRIVATE);
+		int oldScore = sharedPreferencesHighScore.getInt("score", 0);
 		if (Integer.parseInt(finalScore) > oldScore) {
-			Editor editor = sharedPreferences.edit();
+			Editor editor = sharedPreferencesHighScore.edit();
 			editor.putInt("score", Integer.parseInt(finalScore));
 			editor.commit();			
 		}
 		
 		textViewHighScoreValue = (TextView) findViewById(R.id.textViewHighScore);
-		textViewHighScoreValue.setText(sharedPreferences.getInt("score", 0) + "");
+		textViewHighScoreValue.setText(sharedPreferencesHighScore.getInt("score", 0) + "");
 	}
 	
 	/**

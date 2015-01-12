@@ -17,5 +17,6 @@
     <string name="game_sound_description">Sound Game Button</string>
     <string name="game_repeat_description">Repeat Game Button</string>
     <string name="settings_description">Settings</string>
+    <string name="settings_audio">Audio</string>
     <string name="close_description">Close</string>
 </resources>

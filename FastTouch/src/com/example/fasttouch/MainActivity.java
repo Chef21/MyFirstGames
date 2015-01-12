@@ -186,8 +186,6 @@ public class MainActivity extends Activity {
 			}
 		}
 	}
-	
-
 
 	/**
 	 * Timer class
