@@ -43,6 +43,8 @@ public class GameOverActivity extends Activity {
 	 * The MediaPlayer GameOverSound
 	 */
 	public MediaPlayer mp_gameover;
+
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
