@@ -592,8 +592,10 @@ int id action_menu_presenter 0x7f08002f
 int id action_mode_bar 0x7f080042
 int id action_mode_bar_stub 0x7f080041
 int id action_mode_close_button 0x7f080034
-int id action_settings 0x7f08005c
+int id action_settings 0x7f08005e
 int id activity_chooser_view_content 0x7f080035
+int id adViewGameOver 0x7f080057
+int id adViewStart 0x7f08005d
 int id adjust_height 0x7f080002
 int id adjust_width 0x7f080001
 int id always 0x7f080021
@@ -624,8 +626,8 @@ int id hybrid 0x7f080006
 int id icon 0x7f08003a
 int id ifRoom 0x7f080020
 int id image 0x7f080037
-int id imageButtonAudioOnOff 0x7f08005b
-int id imageButtonStartGame 0x7f08005a
+int id imageButtonAudioOnOff 0x7f08005c
+int id imageButtonStartGame 0x7f08005b
 int id imageViewRepeat 0x7f080054
 int id listMode 0x7f080017
 int id list_item 0x7f080039
@@ -639,7 +641,7 @@ int id production 0x7f080009
 int id progress_circular 0x7f080030
 int id progress_horizontal 0x7f080031
 int id radio 0x7f08003f
-int id relativeLayoutGame 0x7f080057
+int id relativeLayoutGame 0x7f080058
 int id relativeLayoutGameOver 0x7f080053
 int id sandbox 0x7f08000a
 int id satellite 0x7f080004
@@ -664,9 +666,9 @@ int id submit_area 0x7f080050
 int id tabMode 0x7f080018
 int id terrain 0x7f080005
 int id textViewHighScore 0x7f080056
-int id textViewLevel 0x7f080059
+int id textViewLevel 0x7f08005a
 int id textViewScore 0x7f080055
-int id textViewTimer 0x7f080058
+int id textViewTimer 0x7f080059
 int id title 0x7f08003b
 int id up 0x7f08002a
 int id useLogo 0x7f080019

@@ -12,6 +12,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+
 /**
  * This class custom the Actitivty on the game over screen
  * It contains an actions to restart the game und show the
@@ -43,8 +48,8 @@ public class GameOverActivity extends Activity {
 	 * The MediaPlayer GameOverSound
 	 */
 	public MediaPlayer mp_gameover;
-
 	
+	private InterstitialAd interstitialAd;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,24 @@ public class GameOverActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE); 
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_gameover);
+		
+		// Add Advertisment
+		interstitialAd = new InterstitialAd(GameOverActivity.this);
+		interstitialAd.setAdUnitId("ca-app-pub-3204051552386925/4131791496");
+		
+		AdView adView = (AdView)this.findViewById(R.id.adViewGameOver);
+		AdRequest adRequest = new AdRequest.Builder()
+		    .build();
+		
+		adView.loadAd(adRequest);
+		interstitialAd.loadAd(adRequest);
+		interstitialAd.setAdListener(new AdListener() {
+			public void onAdLoaded() {
+				if(interstitialAd.isLoaded()) {
+					interstitialAd.show();
+				}
+			}
+		});
 		
 		// start gameover Melodie
 		SharedPreferences prefs = getSharedPreferences("audio", MODE_PRIVATE); 

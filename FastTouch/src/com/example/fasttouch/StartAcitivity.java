@@ -1,5 +1,10 @@
 package com.example.fasttouch;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +31,8 @@ public class StartAcitivity extends Activity {
 	 */
 	private ImageButton imageButtonAudioOnOff;
 	
+	private InterstitialAd interstitialAd;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,6 +41,25 @@ public class StartAcitivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE); 
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_start);	
+		
+
+		// Add Advertisment
+		interstitialAd = new InterstitialAd(StartAcitivity.this);
+		interstitialAd.setAdUnitId("ca-app-pub-3204051552386925/4131791496");
+		
+		AdView adView = (AdView)this.findViewById(R.id.adViewStart);
+		AdRequest adRequest = new AdRequest.Builder()
+		    .build();
+		
+		adView.loadAd(adRequest);
+		interstitialAd.loadAd(adRequest);
+		interstitialAd.setAdListener(new AdListener() {
+			public void onAdLoaded() {
+				if(interstitialAd.isLoaded()) {
+					interstitialAd.show();
+				}
+			}
+		});
 		
 		imageButtonAudioOnOff = (ImageButton) findViewById(R.id.imageButtonAudioOnOff);	
 		SharedPreferences sharedPreferences = getSharedPreferences("audio", MODE_PRIVATE); 

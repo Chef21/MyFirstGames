@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_start"
@@ -33,5 +34,15 @@
         android:background="@null"
         android:contentDescription="@string/settings_audio"
         android:onClick="audioOnOff" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3204051552386925/4131791496" >
+    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>
