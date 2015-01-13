@@ -54,9 +54,12 @@ public class GameOverActivity extends Activity {
 		setContentView(R.layout.activity_gameover);
 		
 		// start gameover Melodie
-		mp_gameover = MediaPlayer.create(getApplicationContext(),R.raw.gameover);
-		mp_gameover.start();
-
+		SharedPreferences prefs = getSharedPreferences("audio", MODE_PRIVATE); 
+		String audioState = prefs.getString("mute", null);
+		if (audioState.equals("unmute")) {
+			mp_gameover = MediaPlayer.create(getApplicationContext(),R.raw.gameover);
+			mp_gameover.start();
+		}
 		
 		// get score		
 		Intent intent = getIntent();
@@ -88,7 +91,11 @@ public class GameOverActivity extends Activity {
 	
 	@Override
 	public void onBackPressed() {
-		mp_gameover.stop();
+		SharedPreferences prefs = getSharedPreferences("audio", MODE_PRIVATE); 
+		String audioState = prefs.getString("mute", null);
+		if (audioState.equals("unmute")) {
+			mp_gameover.stop();
+		}
 		Intent intent = new Intent(GameOverActivity.this, StartAcitivity.class);
 		startActivity(intent);
 	}

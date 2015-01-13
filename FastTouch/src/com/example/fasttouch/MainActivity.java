@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -112,8 +113,12 @@ public class MainActivity extends Activity {
 	private void startGame() {	
 		if (level > 1) {
 			// play music
-			final MediaPlayer mp_nextlvl = MediaPlayer.create(this, R.raw.next_lvl);
-			mp_nextlvl.start();
+			SharedPreferences prefs = getSharedPreferences("audio", MODE_PRIVATE); 
+			String audioState = prefs.getString("mute", null);
+			if (audioState.equals("unmute")) {
+				final MediaPlayer mp_nextlvl = MediaPlayer.create(this, R.raw.next_lvl);
+				mp_nextlvl.start();
+			}
 		}
 		
 		// Add Images

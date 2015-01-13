@@ -2,6 +2,7 @@ package com.example.fasttouch;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -34,7 +35,19 @@ public class StartAcitivity extends Activity {
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_start);	
 		
-		imageButtonAudioOnOff = (ImageButton) findViewById(R.id.imageButtonAudioOnOff);		
+		imageButtonAudioOnOff = (ImageButton) findViewById(R.id.imageButtonAudioOnOff);	
+		SharedPreferences sharedPreferences = getSharedPreferences("audio", MODE_PRIVATE); 
+		String audioState = sharedPreferences.getString("mute", null);
+		if (audioState == null) {
+			SharedPreferences.Editor editor = getSharedPreferences("audio", MODE_PRIVATE).edit();
+			editor.putString("mute", "unmute");
+			editor.commit();
+			imageButtonAudioOnOff.setImageResource(R.drawable.audio_on);
+		} else if (audioState.equals("mute")) {
+			imageButtonAudioOnOff.setImageResource(R.drawable.audio_off);
+		} else if (audioState.equals("unmute")) {
+			imageButtonAudioOnOff.setImageResource(R.drawable.audio_on);
+		}
 	}
 	
 	/**
@@ -48,8 +61,19 @@ public class StartAcitivity extends Activity {
 	}
 	
 	public void audioOnOff(View view) {
-				
-		
+		SharedPreferences prefs = getSharedPreferences("audio", MODE_PRIVATE); 
+		String audioState = prefs.getString("mute", null);
+		if (audioState.equals("mute")) {
+			SharedPreferences.Editor editor = getSharedPreferences("audio", MODE_PRIVATE).edit();
+			editor.putString("mute", "unmute");
+			editor.commit();
+			imageButtonAudioOnOff.setImageResource(R.drawable.audio_on);
+		} else if (audioState.equals("unmute")) {
+			SharedPreferences.Editor editor = getSharedPreferences("audio", MODE_PRIVATE).edit();
+			editor.putString("mute", "mute");
+			editor.commit();
+			imageButtonAudioOnOff.setImageResource(R.drawable.audio_off);
+		}
 	}
 	
 
