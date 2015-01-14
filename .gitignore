@@ -23,3 +23,4 @@
 
 # ignore diverse files in the whole project tree
 *.apk
+*.cache
