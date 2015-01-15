@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.View;
@@ -66,6 +67,16 @@ public class MainActivity extends Activity {
 	CounterClass timer;
 	
 	/**
+	 * The Handler
+	 */
+	Handler handler;
+	
+	/**
+	 * The Runnable
+	 */
+	Runnable runnable;
+	
+	/**
 	 * The Animation FadeIn
 	 */
 	Animation animationFadeIn;
@@ -97,8 +108,17 @@ public class MainActivity extends Activity {
 		textViewScore.setText(score + "");
 		
 		// Initialise timer
-		textViewTimer = (TextView) findViewById(R.id.textViewTimer);		
-
+		textViewTimer = (TextView) findViewById(R.id.textViewTimer);	
+		handler = new Handler();
+		runnable = new Runnable() {
+            @Override
+            public void run() {
+				Intent intent = new Intent(MainActivity.this, GameOverActivity.class);
+				intent.putExtra("score", score + "");			
+				startActivity(intent);	
+            }
+        };
+		
 		// Animations
 		animationFadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
 		relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayoutGame);
@@ -134,9 +154,8 @@ public class MainActivity extends Activity {
 	private void startTimer() {
 		timer = new CounterClass(6000, 1000);
 		timer.start();
+		handler.postDelayed(runnable, 4500);
 	}
-	
-	
 	
 	/**
 	 * Add images
@@ -164,6 +183,7 @@ public class MainActivity extends Activity {
 						textViewLevel.setText("Level: " + level);
 						
 						timer.cancel();
+						handler.removeCallbacks(runnable);
 						
 						// next level
 						startGame();
@@ -207,9 +227,7 @@ public class MainActivity extends Activity {
 
 		@Override
 		public void onFinish() {
-			Intent intent = new Intent(MainActivity.this, GameOverActivity.class);
-			intent.putExtra("score", score + "");			
-			startActivity(intent);
+			textViewTimer.setText("Time's up!");
 		}
 
 		@SuppressLint({ "NewApi", "DefaultLocale", "ResourceAsColor" })
@@ -223,6 +241,7 @@ public class MainActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 		timer.cancel();
+		handler.removeCallbacks(runnable);
 		Intent intent = new Intent(MainActivity.this, StartAcitivity.class);
 		startActivity(intent);
 	}
