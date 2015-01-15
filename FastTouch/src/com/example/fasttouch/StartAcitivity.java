@@ -32,6 +32,7 @@ public class StartAcitivity extends Activity {
 	private ImageButton imageButtonAudioOnOff;
 	
 	private InterstitialAd interstitialAd;
+	AdView adView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class StartAcitivity extends Activity {
 		interstitialAd = new InterstitialAd(StartAcitivity.this);
 		interstitialAd.setAdUnitId("ca-app-pub-3204051552386925/4131791496");
 		
-		AdView adView = (AdView)this.findViewById(R.id.adViewStart);
+		adView = (AdView)this.findViewById(R.id.adViewStart);
 		AdRequest adRequest = new AdRequest.Builder()
 		    .build();
 		
@@ -114,6 +115,26 @@ public class StartAcitivity extends Activity {
 		intent.addCategory(Intent.CATEGORY_HOME);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
-		
 	}
+	
+	@Override
+    public void onResume() {
+        super.onResume();
+        // Resume the AdView.
+        adView.resume();
+    }
+
+    @Override
+    public void onPause() {
+        // Pause the AdView.
+    	adView.pause();
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        // Destroy the AdView.
+    	adView.destroy();
+        super.onDestroy();
+    }
 }
